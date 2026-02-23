@@ -249,18 +249,18 @@ gsap.to(camera.position, {
 })
 
 // ============================================================
-// "137" INSTANCES — 120 of them, organized in orbital rings + scattered
+// "227" INSTANCES — 120 of them, organized in orbital rings + scattered
 // ============================================================
-const NUM_137 = 120
-const instances137 = []
+const NUM_227 = 120
+const instances227 = []
 
-const palette137 = [
+const palette227 = [
   0xff1144, 0x11ff88, 0x2266ff, 0xffaa11, 0xff11ff,
   0x11eeff, 0xffee11, 0xff6611, 0x8811ff, 0x11ff44,
   0xff4488, 0x44ffaa, 0x8844ff, 0xff8811, 0x11aaff,
 ]
 
-const mat137Types = [
+const mat227Types = [
   (c) => new THREE.MeshPhysicalMaterial({ color: c, metalness: 1.0, roughness: 0.05, envMapIntensity: 1.2 }),
   (c) => new THREE.MeshPhysicalMaterial({ color: c, metalness: 0.0, roughness: 0.1, clearcoat: 1.0 }),
   (c) => new THREE.MeshPhysicalMaterial({ color: c, metalness: 0.9, roughness: 0.25 }),
@@ -271,15 +271,15 @@ const mat137Types = [
 ]
 
 // Shared geometry pool (3 sizes to reduce draw calls)
-const geo137Small = new TextGeometry('137', { font, size: 0.35, depth: 0.08, curveSegments: 6, bevelEnabled: true, bevelThickness: 0.01, bevelSize: 0.008, bevelSegments: 2 })
-const geo137Med   = new TextGeometry('137', { font, size: 0.65, depth: 0.14, curveSegments: 8, bevelEnabled: true, bevelThickness: 0.015, bevelSize: 0.01, bevelSegments: 2 })
-const geo137Large = new TextGeometry('137', { font, size: 1.0, depth: 0.2, curveSegments: 8, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.015, bevelSegments: 3 })
-const geoPool = [geo137Small, geo137Small, geo137Med, geo137Med, geo137Large]
+const geo227Small = new TextGeometry('227', { font, size: 0.35, depth: 0.08, curveSegments: 6, bevelEnabled: true, bevelThickness: 0.01, bevelSize: 0.008, bevelSegments: 2 })
+const geo227Med   = new TextGeometry('227', { font, size: 0.65, depth: 0.14, curveSegments: 8, bevelEnabled: true, bevelThickness: 0.015, bevelSize: 0.01, bevelSegments: 2 })
+const geo227Large = new TextGeometry('227', { font, size: 1.0, depth: 0.2, curveSegments: 8, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.015, bevelSegments: 3 })
+const geoPool = [geo227Small, geo227Small, geo227Med, geo227Med, geo227Large]
 
-for (let i = 0; i < NUM_137; i++) {
+for (let i = 0; i < NUM_227; i++) {
   const geo = geoPool[i % geoPool.length]
-  const color = palette137[i % palette137.length]
-  const mat = mat137Types[i % mat137Types.length](color)
+  const color = palette227[i % palette227.length]
+  const mat = mat227Types[i % mat227Types.length](color)
   const mesh = new THREE.Mesh(geo, mat)
 
   // Distribute in organized orbital layers
@@ -302,7 +302,7 @@ for (let i = 0; i < NUM_137; i++) {
     radius = 28 + Math.random() * 12
     phi = Math.acos(2 * Math.random() - 1)
   }
-  const theta = (i / NUM_137) * Math.PI * 2 + Math.random() * 0.5
+  const theta = (i / NUM_227) * Math.PI * 2 + Math.random() * 0.5
 
   mesh.position.set(
     radius * Math.sin(phi) * Math.cos(theta),
@@ -324,7 +324,7 @@ for (let i = 0; i < NUM_137; i++) {
     pulseAmount: 0.05 + Math.random() * 0.1,
     pulsePhase: Math.random() * Math.PI * 2,
   }
-  instances137.push(mesh)
+  instances227.push(mesh)
   scene.add(mesh)
 }
 
@@ -426,8 +426,8 @@ function animate() {
     }
   }
 
-  // --- 137 animations ---
-  for (const mesh of instances137) {
+  // --- 227 animations ---
+  for (const mesh of instances227) {
     const ud = mesh.userData
 
     // Orbit
